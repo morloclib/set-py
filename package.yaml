@@ -1,0 +1,11 @@
+name: set-py
+version: 0.1.0
+homepage: https://github.com/morloclib/set-py
+synopsis: Python implementations for set operations
+description: Python implementations for set operations
+category: data
+license: MIT
+author: "Zebulun Arendsee"
+maintainer: "z@morloc.io"
+github: https://github.com/morloclib/set-py
+bug-reports: https://github.com/morloclib/set-py
