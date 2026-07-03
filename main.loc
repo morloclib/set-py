@@ -13,7 +13,6 @@ source Py from "set.py"
     , "morloc_singleton" as singleton
     , "morloc_fromList" as fromList
     , "morloc_toList" as toList
-    , "morloc_size" as size
     , "morloc_union" as union
     , "morloc_intersection" as intersection
     , "morloc_difference" as difference
@@ -23,6 +22,10 @@ source Py from "set.py"
     , "morloc_filterSet" as filterSet
     , "morloc_mapSet" as mapSet
     )
+
+instance Sizeable (Set a) where
+  %inline
+  source Py from "set.py" ("morloc_size" as size)
 
 instance Packable [a] (Set a) where
   source Py from "set.py"
