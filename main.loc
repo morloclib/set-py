@@ -47,4 +47,7 @@ instance Semigroup (Set a) where
 
 instance Monoid (Set a) where
   %inline
-  source Py from "set.py" ("morloc_emptySet" as mempty)
+  source Py from "set.py"
+    ( "morloc_emptySet" as mempty
+    , "morloc_mconcat_set" as mconcat
+    )

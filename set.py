@@ -3,8 +3,22 @@
 def morloc_packSet(xs):
     return set(xs)
 
+# A set has no order, so the order of its elements is unspecified in every
+# form (COLL-6). Its wire form is sorted anyway: @hash and @eq read the wire
+# form, and equal sets must hash and compare equal in every language, however
+# each was built. The key orders values Python cannot compare directly: None
+# (an absent optional) before any value, as an empty optional sorts in C++,
+# and tuples element by element.
+def _morloc_set_key(x):
+    if x is None:
+        return (0,)
+    if isinstance(x, tuple):
+        return (1, tuple(_morloc_set_key(e) for e in x))
+    return (1, x)
+
+
 def morloc_unpackSet(s):
-    return list(s)
+    return sorted(s, key=_morloc_set_key)
 
 # --- Construction ---
 
@@ -95,3 +109,6 @@ def morloc_safeFold1_set(f, s):
 
 def morloc_emptySet():
     return set()
+
+def morloc_mconcat_set(xss):
+    return set().union(*xss)
